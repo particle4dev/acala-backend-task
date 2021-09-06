@@ -1,11 +1,12 @@
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
 import compression from 'compression';
+import path from 'path';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import config from 'config';
 import express from 'express';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
@@ -47,11 +48,27 @@ class App {
     this.app.use(morgan(config.get('log.format'), { stream }));
     this.app.use(cors({ origin: config.get('cors.origin'), credentials: config.get('cors.credentials') }));
     this.app.use(hpp());
-    this.app.use(helmet());
+
+    // this.app.use(helmet());
+    // this.app.use(
+    //   // [
+    //   helmet.contentSecurityPolicy({
+    //     directives: {
+    //       defaultSrc: ["'self'"],
+    //       // connectSrc: ["'self'", 'https://checkout.stripe.com'],
+    //       connectSrc: null,
+    //     },
+    //   })
+    //   // ]
+    // );
+
     this.app.use(compression());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+    this.app.use(express.static(path.join(__dirname, 'public')));
+    this.app.use('/_next', express.static(path.join(__dirname, 'public', '_next')));
+    
   }
 
   private initializeRoutes(routes: Routes[]) {
