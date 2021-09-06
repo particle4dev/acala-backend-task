@@ -85,6 +85,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+build
 
 # Gatsby files
 .cache/
@@ -238,3 +239,4 @@ stop.sh
 my.log
 dev-pid.txt
 DOCS-VI.md
+.vercel
