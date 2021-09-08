@@ -20,19 +20,6 @@ class UserService {
     return findUser;
   }
 
-  public async createUser(userData: CreateUserDto): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
-
-    const findUser: User = this.users.find(user => user.email === userData.email);
-    if (findUser) throw new HttpException(409, `Your email ${userData.email} already exists`);
-
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const createUserData: User = { id: this.users.length + 1, ...userData, password: hashedPassword };
-    this.users = [...this.users, createUserData];
-
-    return createUserData;
-  }
-
   public async updateUser(userId: number, userData: CreateUserDto): Promise<User[]> {
     if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
 
