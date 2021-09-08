@@ -17,14 +17,14 @@ Following are the minimum tested versions for the tools and libraries you need f
 First, clone the repo via git:
 
 ```bash
-git clone --depth 1 --single-branch --branch main git@github.com:particle4dev/acala-backend-task.git
+git clone --depth 1 --single-branch --branch main https://github.com/particle4dev/acala-backend-task.git
 ```
 
 And install dependencies with yarn.
 
 ```bash
-$ cd acala-backend-task
-$ yarn install
+cd acala-backend-task
+yarn install
 ```
 
 To start the webapp in local, please run:
