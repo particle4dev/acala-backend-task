@@ -33,6 +33,8 @@ To start the webapp in local, please run:
 yarn dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. you can access the static content by using `q1w2e3r4` password.
+
 To build the app:
 
 ```bash
