@@ -69,15 +69,16 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
-    this.app.use(sessions({
-      secret: process.env.SECRET_SESSION || "n2fDvVyrKzyqVNrn",
-      saveUninitialized:true,
-      cookie: { maxAge: fiveMin },
-      resave: false 
-    }));
+    this.app.use(
+      sessions({
+        secret: process.env.SECRET_SESSION || 'n2fDvVyrKzyqVNrn',
+        saveUninitialized: true,
+        cookie: { maxAge: fiveMin },
+        resave: false,
+      }),
+    );
     // this.app.use(express.static(path.join(__dirname, 'public')));
     this.app.use('/_next', express.static(path.join(__dirname, 'public', '_next')));
-    
   }
 
   private initializeRoutes(routes: Routes[]) {
