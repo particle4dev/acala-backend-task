@@ -3,6 +3,7 @@ process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 import compression from 'compression';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+import sessions from 'express-session';
 import cors from 'cors';
 import config from 'config';
 import express from 'express';
@@ -14,6 +15,8 @@ import swaggerUi from 'swagger-ui-express';
 import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
+
+const fiveMin = 1000 * 60 * 5;
 
 class App {
   public app: express.Application;
@@ -66,7 +69,13 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
-    this.app.use(express.static(path.join(__dirname, 'public')));
+    this.app.use(sessions({
+      secret: process.env.SECRET_SESSION || "n2fDvVyrKzyqVNrn",
+      saveUninitialized:true,
+      cookie: { maxAge: fiveMin },
+      resave: false 
+    }));
+    // this.app.use(express.static(path.join(__dirname, 'public')));
     this.app.use('/_next', express.static(path.join(__dirname, 'public', '_next')));
     
   }
