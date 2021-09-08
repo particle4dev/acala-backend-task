@@ -41,19 +41,19 @@ yarn build
 
 ### [How to deploy the app to heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
 
-- 1. [Installing Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+- Step 1: Installing Heroku CLI, [please follow the instructions](https://devcenter.heroku.com/articles/heroku-cli)
 
-- 2. Logging in into Heroku
+- Step 2: Logging in into Heroku
 ```bash
 heroku login
 ```
 
-- 3. Deploy your application to Heroku
+- Step 3. Deploy your application to Heroku
 ```bash
 heroku create
 git push heroku main
 ```
 
-- 4. To open the app in your browser, type `heroku open`.
+- Step 4. To open the app in your browser, type `heroku open`.
 
-- 5. View logs `heroku logs --tail`
+- Step 5. View logs `heroku logs --tail`
