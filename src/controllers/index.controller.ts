@@ -15,21 +15,6 @@ class IndexController {
       next(error);
     }
   };
-
-  public user = (req: Request, res: Response, next: NextFunction): void => {
-    try {
-      if(req.body.password === '123'){
-        const session = req.session;
-        session.userid = 'authorized';
-        res.redirect('/');
-      }
-      else{
-        res.send('Invalid username or password');
-      }
-    } catch (error) {
-      next(error);
-    }
-  };
 }
 
 export default IndexController;
