@@ -1,3 +1,4 @@
+import path from 'path';
 import { NextFunction, Request, Response } from 'express';
 import { CreateUserDto } from '@dtos/users.dto';
 import AuthService from '@services/auth.service';
@@ -13,7 +14,8 @@ class AuthController {
       session.userid = findUser.id;
       res.redirect('/');
     } catch (error) {
-      next(error);
+      // next(error);
+      res.sendFile('public/login-error.html', { root: path.join(__dirname, '..') });
     }
   };
 }
